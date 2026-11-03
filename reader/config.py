@@ -1,5 +1,9 @@
-"""Константы приложения."""
+from pathlib import Path
 
+ROOT_DIR = Path(__file__).resolve().parent.parent
+ICON_PATH = ROOT_DIR / "content" / "favicon.ico"
+
+"""Константы приложения."""
 APP_NAME = "AI Reader"
 APP_ORG = "AIReader"
 

@@ -2,11 +2,11 @@
 from pathlib import Path
 
 from PySide6.QtCore import QSettings, QUrl
-from PySide6.QtGui import QAction, QKeySequence
+from PySide6.QtGui import QAction, QKeySequence, QIcon
 from PySide6.QtWidgets import QHBoxLayout, QMainWindow, QProgressBar, QVBoxLayout, QWidget
 
 from .book import build_page, empty_page, load_book
-from .config import APP_NAME, APP_ORG, ZOOM_DEFAULT, ZOOM_MAX, ZOOM_MIN, ZOOM_STEP
+from .config import APP_NAME, APP_ORG, ZOOM_DEFAULT, ZOOM_MAX, ZOOM_MIN, ZOOM_STEP, ICON_PATH
 from .theme import APP_QSS
 from .widgets.bars import FooterBar, TopBar
 from .widgets.reader_view import ReaderView
@@ -41,6 +41,10 @@ class MainWindow(QMainWindow):
         if self.book.chapters:
             self.open_chapter(int(self.settings.value("chapter", 0)),
                               fraction=float(self.settings.value("fraction", 0.0)))
+
+        if ICON_PATH.exists():
+            self.setWindowIcon(QIcon(str(ICON_PATH)))
+
         else:
             self.view.show_html(empty_page(), self.base_url)
 
